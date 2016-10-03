@@ -7,42 +7,39 @@ $(document).ready(function(){
 var state = {
   exoticFood: [
     {
-      question: "Guess this italian dish",
-      answers: ["pasta", "spaghetti", "lasagna", "pizza"],
-      correctAnswer: "pasta",
-      image: "IMAGE",
+      question: "Guess this delicasy from the Philipines",
+      answers: ["egg", "spaghetti", "balut", "pizza"],
+      correctAnswer: "balut",
+      image: "https://usercontent2.hubstatic.com/12189345_f520.jpg",
     },
     {
       question: "guess this Turkish food",
       answers: ["Lokum", "bannock bread", "witchety grub", "bubbles and squeak"],
       correctAnswer: "Lokum",
-      image: "IMAGE2",
+      image: "http://f.tqn.com/y/candy/1/W/2/e/-/-/Turkish-Delight2-Andrew-Dernie-Photodisc-Getty-Images.jpg",
     },
     {
       question: "Guess this Australian dish",
       answers: ["kangaroo burger", "vegemite", "koala burger", "surstomming"],
-      correctAnswer: "kangaroo burger",
-      image: "IMAGE3",
+      correctAnswer: "vegemite",
+      image: "http://i2.cdn.turner.com/cnnnext/dam/assets/120607040650-vegemite-toast-story-top.jpg",
     },
     {
       question: "Guess this fun dish",
       answers: ["crickets", "ants", "maggot", "cavier"],
       correctAnswer: "crickets",
-      image: "IMAGE4",
+      image: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Chingrit_thot.jpg",
     },
     {
       question: "Guess this Scottish dish",
       answers: ["bannock bread", "Scotch egg", "soda bread", "beer bread"],
       correctAnswer: "bannock bread",
-      image: "IMAGE5",
+      image: "http://www.juliegolob.com/wp-content/uploads/2013/07/Julie_Golob_Bannock_Bread.jpg",
     } ],
     current_question: 0,
     score: 0,
     attempts: 0,
 };
-
-
-//start looping through an array. 
 
 $(".start_button").click(function(){
   $(".start_button").hide();
@@ -53,8 +50,10 @@ function showQuestion(){
   $(".answer_options").show();
     var q = state.exoticFood[state.current_question]["question"];
     $(".title").html(q);
-
-
+    $(".food_img").show();
+    $(".food_img img").attr("src", state.exoticFood[state.current_question]['image']);
+    console.log(state.exoticFood[state.current_question]['image']);
+    console.log($(".food_img img"));
 
     $("#first_choice").text(state.exoticFood[state.current_question]["answers"][0]);
     $("#second_choice").text(state.exoticFood[state.current_question]["answers"][1]);
@@ -64,16 +63,19 @@ function showQuestion(){
 
   $(".choice_button").click(function() {
     var user_guess = $(this).text();
+    $(this).addClass("turn_red");
     checkAnswer(user_guess);
   });
 
 function checkAnswer(user_guess){
   if (user_guess === state.exoticFood[state.current_question]["correctAnswer"]) {
+    $(".choice_button").removeClass("turn_red");
     state.score += 1;
     state.attempts += 1;
     nextQuestion();
   } else {
     state.attempts += 1;
+
   }
 };
 
@@ -84,6 +86,7 @@ function nextQuestion(){
     showQuestion();
   } else {
     $(".title").text("Your final score is: " + state.score + " out of " + state.attempts);
+    $(".food_img").hide();
     rePlay();
   }
 };
@@ -95,15 +98,4 @@ function rePlay() {
     state.attempts = 0;
     $(".answer_options").hide();
 };
-
-//click on an option, if the answer is correct 
-// the submit button will say correct else incorrect if the answer 
-// is wrong and will highlight right answer
-
-//clicking on continue button
-//will show the next array item
-
-//end of all the questions, it will display score
-//restart button
-
 
