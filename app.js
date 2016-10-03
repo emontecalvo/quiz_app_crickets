@@ -5,9 +5,6 @@ $(document).ready(function(){
   var score = 0;
 });
 
-var current_question = 0;
-
-//storing questions/options/correct answers/image into an object
 var state = {
   exoticFood: [
     {
@@ -17,29 +14,30 @@ var state = {
       image: "IMAGE",
     },
     {
-      question: "",
-      answers: [],
-      correctAnswer: "",
-      image: "",
+      question: "guess this Turkish food",
+      answers: ["Lokum", "bannock bread", "witchety grub"],
+      correctAnswer: "Lokum",
+      image: "IMAGE2",
     },
     {
-      question: "",
-      answers: [],
-      correctAnswer: "",
-      image: "",
+      question: "Guess this Australian dish",
+      answers: ["kangaroo burger", "vegemite"],
+      correctAnswer: "kangaroo burger",
+      image: "IMAGE3",
     },
-  {
-    question: "",
-    answers: [],
-    correctAnswer: "",
-    image: "",
-  },
-  {
-    question: "",
-    answers: [],
-    correctAnswer: "",
-    image: "",
-  } ]
+    {
+      question: "Guess this fun dish",
+      answers: ["crickets"],
+      correctAnswer: "crickets",
+      image: "IMAGE4",
+    },
+    {
+      question: "Guess this Scottish dish",
+      answers: ["bannock bread", "Scotch egg"],
+      correctAnswer: "bannock bread",
+      image: "IMAGE5",
+    } ],
+    current_question: 0,
 };
 
 
@@ -54,18 +52,16 @@ $(".start_button").click(function(){
 });
 
 function showQuestion(){
-  if(current_question < state.exoticFood.length) {
-    for (var i = 0; i < state.exoticFood.length; i++) {
-      console.log(state.exoticFood[i]["question"]);
-      var q = state.exoticFood[i]["question"];
-      $(".title").html(q);
-    };
+    console.log(state.exoticFood[state.current_question]["question"]);
+    var q = state.exoticFood[state.current_question]["question"];
+    $(".title").html(q);
+};
 
-  }
-  
-  /*var current_question = state.exoticFood[0];
-  console.log(current_question);
-  $(".hint").text(current_question);*/
+
+
+function nextQuestion(){
+  state.current_question += 1;
+  showQuestion();
 };
 
 //click on an option, if the answer is correct 
