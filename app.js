@@ -7,7 +7,7 @@ $(document).ready(function(){
 var state = {
   exoticFood: [
     {
-      question: "Guess this delicasy from the Philipines",
+      question: "Guess this delicacy from the Philipines",
       answers: ["egg", "spaghetti", "balut", "pizza"],
       correctAnswer: "balut",
       image: "https://usercontent2.hubstatic.com/12189345_f520.jpg",
