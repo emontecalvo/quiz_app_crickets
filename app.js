@@ -1,39 +1,38 @@
 $(document).ready(function(){
  $(".question_list").hide();
   $(".food_img").hide();
-  $(".hint").hide();
-  var score = 0;
+  $(".answer_options").hide();
 });
 
 var state = {
   exoticFood: [
     {
       question: "Guess this italian dish",
-      answers: ["pasta", "spaghetti"],
+      answers: ["pasta", "spaghetti", "lasagna", "pizza"],
       correctAnswer: "pasta",
       image: "IMAGE",
     },
     {
       question: "guess this Turkish food",
-      answers: ["Lokum", "bannock bread", "witchety grub"],
+      answers: ["Lokum", "bannock bread", "witchety grub", "bubbles and squeak"],
       correctAnswer: "Lokum",
       image: "IMAGE2",
     },
     {
       question: "Guess this Australian dish",
-      answers: ["kangaroo burger", "vegemite"],
+      answers: ["kangaroo burger", "vegemite", "koala burger", "surstomming"],
       correctAnswer: "kangaroo burger",
       image: "IMAGE3",
     },
     {
       question: "Guess this fun dish",
-      answers: ["crickets"],
+      answers: ["crickets", "ants", "maggot", "cavier"],
       correctAnswer: "crickets",
       image: "IMAGE4",
     },
     {
       question: "Guess this Scottish dish",
-      answers: ["bannock bread", "Scotch egg"],
+      answers: ["bannock bread", "Scotch egg", "soda bread", "beer bread"],
       correctAnswer: "bannock bread",
       image: "IMAGE5",
     } ],
@@ -46,18 +45,19 @@ var state = {
 $(".start_button").click(function(){
   $(".start_button").hide();
   showQuestion();
-  // $(".question_list").show();
-  // $(".food_img").show();
-  // $(".hint").show();
 });
 
 function showQuestion(){
+  $(".answer_options").show();
     console.log(state.exoticFood[state.current_question]["question"]);
     var q = state.exoticFood[state.current_question]["question"];
     $(".title").html(q);
+    $("li:nth-child(1)").html("<li><input type='checkbox'/>" + state.exoticFood[state.current_question]["answers"][0]) + "</li>";
+    $("li:nth-child(2)").html("<li><input type='checkbox'/>" + state.exoticFood[state.current_question]["answers"][1]) + "</li>";
+    $("li:nth-child(3)").html("<li><input type='checkbox'/>" + state.exoticFood[state.current_question]["answers"][2]) + "</li>";
+    $("li:nth-child(4)").html("<li><input type='checkbox'/>" + state.exoticFood[state.current_question]["answers"][3]) + "</li>";
 };
-
-
+// $("#element2").replaceWith("This is the second element");
 
 function nextQuestion(){
   state.current_question += 1;
